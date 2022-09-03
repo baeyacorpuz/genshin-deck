@@ -1,10 +1,16 @@
 import "./App.css";
 
-function App() {
+const App = () => {
+
   return (
     <div className="App">
       <div className="App-header">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <div>
+          <h1 className="text-3xl font-bold underline">Hello world!</h1>
+          <button
+            className="px-7 py-3.5 text-white bg-indigo-600 rounded-md duration-150 hover:bg-indigo-700 active:shadow-lg"
+          >Get Started</button>
+        </div>
       </div>
     </div>
   );
