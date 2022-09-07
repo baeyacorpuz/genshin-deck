@@ -4,16 +4,15 @@ import { Button } from '@mui/material';
 import ModalForm from '../modal';
 import { deleteCharacters } from '../../api/characterApi';
 import { Edit } from '@mui/icons-material';
+import { isEmpty } from 'lodash';
 
-const CustomToolbar = ({
-  handleDelete
-}) => {
+const CustomToolbar = ({onClick, selectedIds}) => {
   return (
     <GridToolbarContainer>
       <GridToolbarFilterButton sx={{
         marginRight: 4
       }} />
-      <Button onClick={handleDelete}>Delete</Button>
+      <Button disabled={isEmpty(selectedIds)} onClick={onClick}>Delete</Button>
     </GridToolbarContainer>
   )
 }
@@ -41,7 +40,7 @@ const DataTable = ({
   }  
 
   const columns = [
-    { field: 'name', headerName: "Name", width: 200, filterable: false},
+    { field: 'name', headerName: "Name", width: 200},
     { field: 'vision',
       headerName: "Vision",
       width: 160,
@@ -66,8 +65,12 @@ const DataTable = ({
   }
 
   const handleDelete = (row) => {
-    deleteCharacters({"ids": [row._id]})
-    toggleViewModalOpen()
+    if (!isEmpty(selectedIds)) {
+      deleteCharacters({"ids": selectedIds})
+    } else {
+      deleteCharacters({"ids": [row._id]})
+      toggleViewModalOpen()
+    }
   }
 
   const toggleFormEdit = () => { setFormEdit(true) }
@@ -86,13 +89,13 @@ const DataTable = ({
           Toolbar: CustomToolbar
         }}
         componentsProps={{
-          GridToolbar: {
-            
+          toolbar: {
+            onClick: handleDelete,
+            selectedIds: selectedIds
           }
         }}
         onSelectionModelChange={(ids) => {
           setSelectedIds(ids)
-          console.log(ids);
         }}
       />
       <ModalForm

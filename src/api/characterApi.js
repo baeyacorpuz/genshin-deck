@@ -51,3 +51,13 @@ export const deleteCharacters = async (data) => {
 }
 
 
+export const updateCharacter = async (data) => {
+  console.log(data)
+  const response = await apiResponse({
+    method: 'PUT',
+    url: '/character',
+    data
+  })
+
+  return response
+}

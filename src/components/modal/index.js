@@ -42,15 +42,6 @@ const ModalForm = ({
           <Form
             onSubmit={onSubmit}
             initialValues={row}
-            // initialValues={{
-            //   name: '',
-            //   vision: {},
-            //   weapon_type: '',
-            //   constellation: '',
-            //   title: '',
-            //   description: '',
-            //   is_active: checked,
-            // }}
             render={({ handleSubmit }) => (
               <form onSubmit={handleSubmit} noValidate>
                 <Field

@@ -16,7 +16,7 @@ const SelectField = ({
     onChange(event.target.value)
   }
   return (
-    <FormControl  fullWidth displayEmpty>
+    <FormControl  fullWidth>
     <InputLabel id="vision" >Vision</InputLabel>
     <Select
       id="vision"
